@@ -12,25 +12,27 @@ DESCRIPTION:
 #include <unistd.h>
 
 int main(int argc, char **argv) {
-    int numberOfStrings = 0;
+    int nGiven = 0;
+    int numberOfStrings;
     int errorInt;
     pid_t pid;
 
     //task2 <int> <string1> <string2>...
-    errorInt = sscanf(argv[1], "%i", &numberOfStrings);
+    errorInt = sscanf(argv[1], "%i", &nGiven);
     if(errorInt != 0){
-        if(numberOfStrings == argc - 2){
-            for(int i=2; argc; i++){
+        numberOfStrings = argc - 2;
+        if(nGiven == numberOfStrings){
+            for(int i=2; i < argc; i++){
                 pid = fork();
                 if(pid == 0){
-                    printf("%s\n",argv[i]);
-                    //execlp("./permutations", "permutations", argv[i], NULL);
+                    execlp("./permutations", "permutations", argv[i], NULL);
                     exit(0);
                 } else if (pid > 0){
-                    exit(0);
+                    //do nothing with parent
                 } else {
                     printf("error creating process \n");
                 }
+
             }
         } else {
             printf("Incorrect usage, n does not equal numnber of strings\n");
@@ -38,5 +40,6 @@ int main(int argc, char **argv) {
     } else {
         printf("Incorrect usage\n");
     }
+    return 0;
 
 }
