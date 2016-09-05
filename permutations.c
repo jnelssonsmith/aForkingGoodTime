@@ -2,7 +2,7 @@
 NAME: Joshua Nelsson-Smith
 STUDENT ID: 25954113
 START DATE: 03/09/16
-LAST MODIFIED:
+LAST MODIFIED: 05/09/16
 DESCRIPTION:
 */
 
@@ -10,24 +10,24 @@ DESCRIPTION:
 #include <string.h>
 #include <stdlib.h>
 
-void swap(char *a, char *b) {
+void swap(char *firstChar, char *secondChar) {
     char temp;
-    temp = *a;
-    *a = *b;
-    *b = temp;
+    temp = *firstChar;
+    *firstChar = *secondChar;
+    *secondChar = temp;
 }
 
-void print(char *a, int i, int n, char *processIdentifier) {
+void permute(char *permString, int i, int n, char *processIdentifier) {
     int j;
 
     if(i == n) {
         printf("process %s: ", processIdentifier);
-        printf("%s\n", a);
+        printf("%s\n", permString);
     } else {
         for(j = i; j <= n; j++) {
-            swap(a + i, a + j);
-            print(a, i + 1, n, processIdentifier);
-            swap(a + i, a + j);
+            swap(permString + i, permString + j);
+            permute(permString, i + 1, n, processIdentifier);
+            swap(permString + i, permString + j);
         }
     }
 }
@@ -40,7 +40,8 @@ int main(int argc, char **argv) {
         exit(0);
     } else {
         id = strdup(argv[1]);
-        print(argv[1], 0, strlen(argv[1]) - 1, id);
+        permute(argv[1], 0, strlen(argv[1]) - 1, id);
     }
+    system("\n");
     return 0;
 }

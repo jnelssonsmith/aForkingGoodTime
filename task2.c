@@ -2,7 +2,7 @@
 NAME: Joshua Nelsson-Smith
 STUDENT ID: 25954113
 START DATE: 03/09/16
-LAST MODIFIED:
+LAST MODIFIED: 05/09/16
 DESCRIPTION:
 */
 
@@ -40,6 +40,7 @@ int main(int argc, char **argv) {
     } else {
         printf("Incorrect usage\n");
     }
+    system("\n");
     return 0;
 
 }
