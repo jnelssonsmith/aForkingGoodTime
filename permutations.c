@@ -6,6 +6,9 @@ LAST MODIFIED: 05/09/16
 DESCRIPTION:
 */
 
+
+
+/* need to add timing to this... */ 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -42,6 +45,5 @@ int main(int argc, char **argv) {
         id = strdup(argv[1]);
         permute(argv[1], 0, strlen(argv[1]) - 1, id);
     }
-    system("\n");
     return 0;
 }

@@ -40,7 +40,10 @@ int main(int argc, char **argv) {
     } else {
         printf("Incorrect usage\n");
     }
-    system("\n");
+
+    for(int k=0; k < numberOfStrings; k++){
+        wait(NULL);
+    }
     return 0;
 
 }
