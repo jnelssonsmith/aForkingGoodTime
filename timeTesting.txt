@@ -1,0 +1,20 @@
+firstly running
+$ time ./task2 3 abc def ghi
+gave an average of real 0m.0.010s
+
+with a slightly longer string
+$ time ./task2 3 abc123 def ghijkl
+we see an average of 0m.0.014s
+However to test this is even a performance boost
+we can force the app to run sequentially and see the
+difference.
+Sequential time = 0m0.019s
+
+The real test will now be to run multiple long strings and see
+if we can get a drastic improvement
+$ time ./task2 3 abcdefghij 123456789? nopqrstuvw
+
+SEQUENTIAL:
+0m39.833
+MULTIPROCESS:
+0m47.877

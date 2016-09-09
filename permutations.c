@@ -8,10 +8,12 @@ DESCRIPTION:
 
 
 
-/* need to add timing to this... */ 
+/* need to add timing to this... */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <time.h>
 
 void swap(char *firstChar, char *secondChar) {
     char temp;
@@ -37,13 +39,19 @@ void permute(char *permString, int i, int n, char *processIdentifier) {
 
 int main(int argc, char **argv) {
     char *id;
+    clock_t startTime;
+    clock_t endTime;
+    double totalTime;
 
     if(argc != 2){
         printf("Incorrect usage:\nUsage: permutations <string>\n");
         exit(0);
     } else {
         id = strdup(argv[1]);
+        startTime = clock();
         permute(argv[1], 0, strlen(argv[1]) - 1, id);
-    }
+        endTime = clock();
+        totalTime = (double)(endTime - startTime) / CLOCKS_PER_SEC;
+        }
     return 0;
 }

@@ -1,4 +1,4 @@
-/*
+ /*
 NAME: Joshua Nelsson-Smith
 STUDENT ID: 25954113
 START DATE: 03/09/16
@@ -29,10 +29,10 @@ int main(int argc, char **argv) {
                     exit(0);
                 } else if (pid > 0){
                     //do nothing with parent
+                    //wait(NULL);
                 } else {
                     printf("error creating process \n");
                 }
-
             }
         } else {
             printf("Incorrect usage, n does not equal numnber of strings\n");
@@ -41,9 +41,11 @@ int main(int argc, char **argv) {
         printf("Incorrect usage\n");
     }
 
+
     for(int k=0; k < numberOfStrings; k++){
         wait(NULL);
     }
+
     return 0;
 
 }
