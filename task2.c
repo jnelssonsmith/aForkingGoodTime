@@ -2,8 +2,12 @@
 NAME: Joshua Nelsson-Smith
 STUDENT ID: 25954113
 START DATE: 03/09/16
-LAST MODIFIED: 05/09/16
-DESCRIPTION:
+LAST MODIFIED: 09/09/16
+DESCRIPTION: This function is used to run multiple processes that each run the
+permutations program created for task 1. You feed the program the number of
+strings to be worked with and the list of strings, then it spawns a child process
+for every string and runs permutations on it.
+ARGS:
 */
 
 #include <stdio.h>
@@ -29,7 +33,6 @@ int main(int argc, char **argv) {
                     exit(0);
                 } else if (pid > 0){
                     //do nothing with parent
-                    //wait(NULL);
                 } else {
                     printf("error creating process \n");
                 }
@@ -45,7 +48,5 @@ int main(int argc, char **argv) {
     for(int k=0; k < numberOfStrings; k++){
         wait(NULL);
     }
-
     return 0;
-
 }
