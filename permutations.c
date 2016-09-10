@@ -29,7 +29,7 @@ void swap(char *firstChar, char *secondChar) {
     *secondChar = temp;
 }
 
-void permute(char *permString, int i, int n, char *processIdentifier) {
+void permute(char *permString, int i, int n, char *processIdentifier, FILE *outputFilePointer) {
     /* ARGS:
     permString - the string that you want to print all the permutations of
     i - the position of the last set character in the string
@@ -42,12 +42,12 @@ void permute(char *permString, int i, int n, char *processIdentifier) {
     int j;
 
     if(i == n) {
-        printf("process %s: ", processIdentifier);
-        printf("%s\n", permString);
+        //printf("process %s: %s\n", processIdentifier, permString);
+        fprintf(outputFilePointer, "process %s: %s\n", processIdentifier, permString);
     } else {
         for(j = i; j <= n; j++) {
             swap(permString + i, permString + j);
-            permute(permString, i + 1, n, processIdentifier);
+            permute(permString, i + 1, n, processIdentifier, outputFilePointer);
             swap(permString + i, permString + j);
         }
     }
@@ -61,17 +61,24 @@ int main(int argc, char **argv) {
     clock_t startTime;
     clock_t endTime;
     double totalTime;
+    FILE *timesFilePointer, *outputFilePointer;
 
     if(argc != 2){
         printf("Incorrect usage:\nUsage: permutations <string>\n");
         exit(0);
     } else {
+        timesFilePointer = fopen("times.txt", "a");
+        outputFilePointer = fopen("output.txt", "a");
+
         id = strdup(argv[1]);
         startTime = clock();
-        permute(argv[1], 0, strlen(argv[1]) - 1, id);
+        permute(argv[1], 0, strlen(argv[1]) - 1, id, outputFilePointer);
         endTime = clock();
         totalTime = (double)(endTime - startTime) / CLOCKS_PER_SEC;
         }
-        printf("Time taken: %f seconds\n", totalTime);
+        fprintf(timesFilePointer, "%s: Time taken: %f seconds\n",id,totalTime);
+
+        fclose(timesFilePointer);
+        fclose(outputFilePointer);
     return 0;
 }

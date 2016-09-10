@@ -21,11 +21,15 @@ int main(int argc, char **argv) {
     int errorInt;
     pid_t pid;
 
+    system("rm times.txt");
+    system("rm output.txt");
+
     //task2 <int> <string1> <string2>...
-    errorInt = sscanf(argv[1], "%i", &nGiven);
+    errorInt = sscanf(argv[1], "%i", &nGiven); //check that argument given is an integer
     if(errorInt != 0){
         numberOfStrings = argc - 2;
         if(nGiven == numberOfStrings){
+            printf("Running permute on strings...\n");
             for(int i=2; i < argc; i++){
                 pid = fork();
                 if(pid == 0){
@@ -39,14 +43,16 @@ int main(int argc, char **argv) {
             }
         } else {
             printf("Incorrect usage, n does not equal numnber of strings\n");
+            return 0;
         }
     } else {
         printf("Incorrect usage\n");
+        return 0;
     }
-
 
     for(int k=0; k < numberOfStrings; k++){
         wait(NULL);
     }
+    printf("Permutations complete. Check times.txt for time taken by each string and output.txt for the output of the permutations\n");
     return 0;
 }
