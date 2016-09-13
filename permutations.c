@@ -5,7 +5,7 @@ START DATE: 03/09/16
 LAST MODIFIED: 09/09/16
 DESCRIPTION: This program takes a string of characters and prints out all the
 permutations of the string using backtracking to swap every character of the
-string recursively.
+string recursively
 */
 
 
@@ -43,6 +43,10 @@ void permute(char *permString, int i, int n, char *processIdentifier, FILE *outp
 
     if(i == n) {
         //printf("process %s: %s\n", processIdentifier, permString);
+        /* This basically knee caps the processor times for this, because it is
+        using file i/o and also printing to stdout. Helpful for timing but unecessary?
+        */
+        printf("%s, ", permString);
         fprintf(outputFilePointer, "process %s: %s\n", processIdentifier, permString);
     } else {
         for(j = i; j <= n; j++) {
@@ -56,6 +60,10 @@ void permute(char *permString, int i, int n, char *processIdentifier, FILE *outp
 int main(int argc, char **argv) {
     /* This function is the interface for the command line - it takes in one
     arg, the string to be permuted and feeds it to the permute function.
+    */
+
+    /*
+    code to ts
     */
     char *id;
     clock_t startTime;

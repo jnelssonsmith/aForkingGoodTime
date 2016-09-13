@@ -1,0 +1,9 @@
+1. does aaa print out 6 a statements or does it print out one - thats okay
+2. Is file export okay  .
+3. How much timing is necessary
+4. Manual needed in program? or just in user docs
+5. Check my interleaving is a-okay
+6. Check I don’t have to call permutations as a function (I can call from external file)
+7. They say in permutations task 1 to have a main that tests this, is it really necessary? 
+
+

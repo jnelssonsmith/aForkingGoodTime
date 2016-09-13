@@ -21,7 +21,8 @@ int main(int argc, char **argv) {
     int errorInt;
     pid_t pid;
 
-    system("rm times.txt");
+
+    //system("rm times.txt");
     system("rm output.txt");
 
     //task2 <int> <string1> <string2>...
@@ -30,13 +31,14 @@ int main(int argc, char **argv) {
         numberOfStrings = argc - 2;
         if(nGiven == numberOfStrings){
             printf("Running permute on strings...\n");
-            for(int i=2; i < argc; i++){
+            int i=2;
+            while (i < argc){
                 pid = fork();
                 if(pid == 0){
                     execlp("./permutations", "permutations", argv[i], NULL);
                     exit(0);
                 } else if (pid > 0){
-                    //do nothing with parent
+                    i++;
                 } else {
                     printf("error creating process \n");
                 }
@@ -53,6 +55,6 @@ int main(int argc, char **argv) {
     for(int k=0; k < numberOfStrings; k++){
         wait(NULL);
     }
-    printf("Permutations complete. Check times.txt for time taken by each string and output.txt for the output of the permutations\n");
+    printf("\nPermutations complete. Check times.txt for time taken by each string and output.txt for the output of the permutations\n");
     return 0;
 }
