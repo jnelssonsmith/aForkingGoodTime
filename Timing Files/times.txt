@@ -7,3 +7,4 @@ abcdefgh: Time taken: 0.032610 seconds
 abcdefgh: Time taken: 0.035102 seconds
 abcdefgh: Time taken: 0.029892 seconds
 abcdefgh: Time taken: 0.042785 seconds
+abcdefgh: Time taken: 0.028557 seconds
