@@ -1,0 +1,17 @@
+ijklmnop: Time taken: 0.037091 seconds
+abcdefgh: Time taken: 0.038207 seconds
+
+ijklmnop: Time taken: 0.037249 seconds
+abcdefgh: Time taken: 0.037212 seconds
+
+abcdefgh: Time taken: 0.036902 seconds
+ijklmnop: Time taken: 0.037180 seconds
+
+ijklmnop: Time taken: 0.038068 seconds
+abcdefgh: Time taken: 0.037862 seconds
+
+abcdefgh: Time taken: 0.037026 seconds
+ijklmnop: Time taken: 0.036651 seconds
+
+abcdefgh: Time taken: 0.037030 seconds
+ijklmnop: Time taken: 0.037128 seconds

@@ -1,0 +1,5 @@
+abcdefghij: Time taken: 3.019008 seconds
+abcdefghij: Time taken: 3.102178 seconds
+abcdefghij: Time taken: 3.035681 seconds
+abcdefghij: Time taken: 3.005653 seconds
+abcdefghij: Time taken: 3.082050 seconds

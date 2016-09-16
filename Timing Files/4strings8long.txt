@@ -1,0 +1,24 @@
+qrstuvwx: Time taken: 0.043940 seconds
+ijklmnop: Time taken: 0.045099 seconds
+12345678: Time taken: 0.046269 seconds
+abcdefgh: Time taken: 0.046422 seconds
+
+abcdefgh: Time taken: 0.041846 seconds
+qrstuvwx: Time taken: 0.043074 seconds
+ijklmnop: Time taken: 0.044816 seconds
+12345678: Time taken: 0.044362 seconds
+
+qrstuvwx: Time taken: 0.043687 seconds
+ijklmnop: Time taken: 0.044480 seconds
+abcdefgh: Time taken: 0.043674 seconds
+12345678: Time taken: 0.042615 seconds
+
+abcdefgh: Time taken: 0.043368 seconds
+ijklmnop: Time taken: 0.042349 seconds
+qrstuvwx: Time taken: 0.043392 seconds
+12345678: Time taken: 0.042701 seconds
+
+ijklmnop: Time taken: 0.042831 seconds
+qrstuvwx: Time taken: 0.042305 seconds
+12345678: Time taken: 0.041481 seconds
+abcdefgh: Time taken: 0.041607 seconds

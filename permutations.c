@@ -2,10 +2,11 @@
 NAME: Joshua Nelsson-Smith
 STUDENT ID: 25954113
 START DATE: 03/09/16
-LAST MODIFIED: 09/09/16
+LAST MODIFIED: 16/09/16
 DESCRIPTION: This program takes a string of characters and prints out all the
 permutations of the string using backtracking to swap every character of the
-string recursively
+string recursively. It also features an optional -t parameter that will
+run the tests for this program
 */
 
 
@@ -62,9 +63,6 @@ int main(int argc, char **argv) {
     arg, the string to be permuted and feeds it to the permute function.
     */
 
-    /*
-    code to ts
-    */
     char *id;
     clock_t startTime;
     clock_t endTime;
@@ -78,15 +76,26 @@ int main(int argc, char **argv) {
         timesFilePointer = fopen("times.txt", "a");
         outputFilePointer = fopen("output.txt", "a");
 
-        id = strdup(argv[1]);
-        startTime = clock();
-        permute(argv[1], 0, strlen(argv[1]) - 1, id, outputFilePointer);
-        endTime = clock();
-        totalTime = (double)(endTime - startTime) / CLOCKS_PER_SEC;
-        }
-        fprintf(timesFilePointer, "%s: Time taken: %f seconds\n",id,totalTime);
+        if (strcmp(argv[1], "-t") == 0){
+            char *a = strdup("a");
+            char *abc = strdup("abc");
+            printf("--RUNNING TESTS--\nInput: a\nExpected output: a\nOutput: ");
+            permute(a, 0, 0, "testa", outputFilePointer);
+            printf("----\nInput: abc\nExpected output: abc, acb, bac, bca, cab, cba\nOutput: ");
+            permute(abc, 0, 2, "testb", outputFilePointer);
 
+
+        } else {
+            id = strdup(argv[1]);
+            startTime = clock();
+            permute(argv[1], 0, strlen(argv[1]) - 1, id, outputFilePointer);
+            endTime = clock();
+            totalTime = (double)(endTime - startTime) / CLOCKS_PER_SEC;
+            }
+            fprintf(timesFilePointer, "%s: Time taken: %f seconds\n",id,totalTime);
+        }
         fclose(timesFilePointer);
         fclose(outputFilePointer);
+
     return 0;
 }
