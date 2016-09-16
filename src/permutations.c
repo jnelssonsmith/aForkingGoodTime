@@ -9,8 +9,6 @@ string recursively. It also features an optional -t parameter that will
 run the tests for this program
 */
 
-
-/* need to add timing to this... */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -34,20 +32,19 @@ void permute(char *permString, int i, int n, char *processIdentifier, FILE *outp
     /* ARGS:
     permString - the string that you want to print all the permutations of
     i - the position of the last set character in the string
-    n - the length of the string
-    processIdentifier - the id that we give to the process
-    so we can identify which outputs belong to which process when using task 2
+    n - the index of the last character to be swapped
+    processIdentifier - the id that we give to the process, used for the output
+    used for the output logs so we can easily trace the interleaving of the
+    proceses.
+    outputFilePointer - the pointer to the file that we want to write the
+    permutations to.
     DESCRIPTION: permute is a recursive algorithm using backtracking to
     swap all the letters in a string ... <should go into more detail>
     */
     int j;
 
-    if(i == n) {
-        //printf("process %s: %s\n", processIdentifier, permString);
-        /* This basically knee caps the processor times for this, because it is
-        using file i/o and also printing to stdout. Helpful for timing but unecessary?
-        */
-        printf("%s, ", permString);
+    if(i == n) { //basecase where the current char to swap is set to the last
+        printf("%s\n", permString);
         fprintf(outputFilePointer, "process %s: %s\n", processIdentifier, permString);
     } else {
         for(j = i; j <= n; j++) {
@@ -60,7 +57,8 @@ void permute(char *permString, int i, int n, char *processIdentifier, FILE *outp
 
 int main(int argc, char **argv) {
     /* This function is the interface for the command line - it takes in one
-    arg, the string to be permuted and feeds it to the permute function.
+    arg, the string to be permuted and feeds it to the permute function. If the
+    arg is "-t" it will run the tests.
     */
 
     char *id;
@@ -69,20 +67,23 @@ int main(int argc, char **argv) {
     double totalTime;
     FILE *timesFilePointer, *outputFilePointer;
 
-    if(argc != 2){
-        printf("Incorrect usage:\nUsage: permutations <string>\n");
+    if(argc != 2){ //if there are more than 2 args in argv[], then exit,
+        printf("Incorrect usage:\nUsage: permutations <string>\nType permutations -t to run tests");
         exit(0);
     } else {
         timesFilePointer = fopen("times.txt", "a");
-        outputFilePointer = fopen("output.txt", "a");
+        outputFilePointer = fopen("output.txt", "w");
 
         if (strcmp(argv[1], "-t") == 0){
             char *a = strdup("a");
+            char *ab = strdup("ab");
             char *abc = strdup("abc");
-            printf("--RUNNING TESTS--\nInput: a\nExpected output: a\nOutput: ");
+            printf("--RUNNING TESTS--\nInput: a\nExpected output: a\nOutput:\n");
             permute(a, 0, 0, "testa", outputFilePointer);
-            printf("----\nInput: abc\nExpected output: abc, acb, bac, bca, cab, cba\nOutput: ");
-            permute(abc, 0, 2, "testb", outputFilePointer);
+            printf("\n----\nInput: ab\nExpected output: ab, ba\nOutput:\n");
+            permute(ab, 0, 1, "testb", outputFilePointer);
+            printf("\n----\nInput: abc\nExpected output: abc, acb, bac, bca, cab, cba\nOutput:\n");
+            permute(abc, 0, 2, "testc", outputFilePointer);
 
 
         } else {
