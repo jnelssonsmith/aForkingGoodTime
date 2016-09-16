@@ -9,7 +9,7 @@ Start by downloading and unzipping the file named `25954113_A2.zip`, once unzipp
 25954113_A2
 ├── README.md
 ├── README.pdf
-├── Timing\ Files
+├── TimingFiles
 │   ├── 1string10long.txt
 │   ├── 1string8long.txt
 │   ├── 2strings8long.txt
@@ -45,3 +45,18 @@ $ gcc -o task2 src/task2.c
 ```
 ---
 ## Using the Programs
+As said above, there are 2 programs included, `permutations` and `task2`. Permutations takes one argument, the string you want to show all the permutations of.
+For example running:
+```sh
+$ ./permutations abc
+```
+Will print out all the permutations of the string "abc". In addition to this, the permutations will be printed to a file called `output.txt` should you want to store them or if your terminal has a print limit. Another file `times.txt` will also be generated and will list how long it took to run permutations on your string.
+Also note that if you wish to run some tests on the permutations program, you can run them via:
+```sh
+$ ./permutations -t
+```
+The second executable `task2` is a little more complex. It runs the permutations executable from earlier, but by creating a new process for each of them. It's usage is `permutations n <string 1> <string 2> .. <string n>`. For example:
+```sh
+$ ./task2 3 abc def ghi
+```
+Would print the permutations of the three strings "abc", "def" and "ghi". Also note that because this runs the `permutations` program from earlier, it will also generate the associated `times.txt` and `output.txt` files.

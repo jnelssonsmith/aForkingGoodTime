@@ -39,7 +39,13 @@ void permute(char *permString, int i, int n, char *processIdentifier, FILE *outp
     outputFilePointer - the pointer to the file that we want to write the
     permutations to.
     DESCRIPTION: permute is a recursive algorithm using backtracking to
-    swap all the letters in a string ... <should go into more detail>
+    swap all the letters in a string. It works by iterating along a string,
+    swapping one character with each other element in the string and running the
+    program again recursively. Once a character is swapped it is fixed for that
+    instance of the program and the i value is increased by one in subsequent
+    calls. The base case is when the i value reaches the end of the string, and
+    the last character swapped with itself would obviously return nothing so
+    the recursion is complete.
     */
     int j;
 
@@ -50,6 +56,7 @@ void permute(char *permString, int i, int n, char *processIdentifier, FILE *outp
         for(j = i; j <= n; j++) {
             swap(permString + i, permString + j);
             permute(permString, i + 1, n, processIdentifier, outputFilePointer);
+            //have to swap back after permuting
             swap(permString + i, permString + j);
         }
     }
@@ -67,13 +74,20 @@ int main(int argc, char **argv) {
     double totalTime;
     FILE *timesFilePointer, *outputFilePointer;
 
-    if(argc != 2){ //if there are more than 2 args in argv[], then exit,
+    if(argc != 2){
+        /*if there are more than 2 args in argv[], then exit (2 because argv[0]
+        is always program name) */
         printf("Incorrect usage:\nUsage: permutations <string>\nType permutations -t to run tests");
         exit(0);
     } else {
+        //only append times because sometimes we want to list a bunch at the same time
         timesFilePointer = fopen("times.txt", "a");
-        outputFilePointer = fopen("output.txt", "w");
+        /* we need use append here as well so the child processes dont overwrite eachother */
+        outputFilePointer = fopen("output.txt", "a");
 
+        /* the following is the test functionality, it runs through the cases
+        of the string being "a", "ab" and "abc". It prints the expected output
+        then it runs permute with those functions to ensure it works */
         if (strcmp(argv[1], "-t") == 0){
             char *a = strdup("a");
             char *ab = strdup("ab");
@@ -87,11 +101,20 @@ int main(int argc, char **argv) {
 
 
         } else {
+            /* if the -t argument is not given we will run permute on the string
+            given it will also generate the timing  files */
+
+            //the id associated with any string is just the original version of that string
             id = strdup(argv[1]);
-            startTime = clock();
+
+            startTime = clock(); //start the clock count
             permute(argv[1], 0, strlen(argv[1]) - 1, id, outputFilePointer);
-            endTime = clock();
+            endTime = clock(); //record clocks at end of execution
+
+            /* total time in seconds will be the difference between start and end
+            divided between the CLOCKS_PER_SEC */
             totalTime = (double)(endTime - startTime) / CLOCKS_PER_SEC;
+
             }
             fprintf(timesFilePointer, "%s: Time taken: %f seconds\n",id,totalTime);
         }
