@@ -1,5 +1,5 @@
 
 language: C
-script: gcc -o lazy lazy.c
+script: ./compScript.sh
 compiler: gcc
 sudo: required
