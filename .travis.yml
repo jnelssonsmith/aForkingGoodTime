@@ -1,0 +1,4 @@
+language: C
+script: gcc -o lazy lazy.c
+compiler: gcc
+sudo: required
