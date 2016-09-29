@@ -1,6 +1,5 @@
 /*
 NAME: Joshua Nelsson-Smith
-STUDENT ID: 25954113
 START DATE: 03/09/16
 LAST MODIFIED: 16/09/16
 DESCRIPTION: This program takes a string of characters and prints out all the

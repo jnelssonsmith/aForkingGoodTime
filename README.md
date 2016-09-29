@@ -4,11 +4,10 @@
 ##### 16/09/2016
 ---
 ## Installing the program
-Start by downloading and unzipping the file named `25954113_A2.zip`, once unzipped you should see the folder contains the following files:
+Start by downloading and unzipping the file named `aForkingGoodTime.zip`, once unzipped you should see the folder contains the following files:
 ```
-25954113_A2
+aForkingGoodTime
 ├── README.md
-├── README.pdf
 ├── TimingFiles
 │   ├── 1string10long.txt
 │   ├── 1string8long.txt
